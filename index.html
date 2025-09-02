@@ -1,23 +1,110 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=, initial-scale=1.0">
-    <title>Document</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>BMI Calculator</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(135deg, #04eb92, #ff0cff);
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .container {
+      background: #fff;
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+      width: 100%;
+      max-width: 400px;
+      text-align: center;
+    }
+    h1 {
+      margin-bottom: 20px;
+      color: #333;
+    }
+    .input-group {
+      margin-bottom: 15px;
+      text-align: left;
+    }
+    label {
+      display: block;
+      font-weight: bold;
+      margin-bottom: 5px;
+      color: #444;
+    }
+    input {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 16px;
+    }
+    button {
+      margin-top: 15px;
+      width: 100%;
+      padding: 12px;
+      border: none;
+      border-radius: 8px;
+      background: #3b5de7;
+      color: white;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    button:hover {
+      background: #5563d6;
+    }
+    .result {
+      margin-top: 20px;
+      font-size: 18px;
+      font-weight: bold;
+      color: #333;
+    }
+  </style>
 </head>
 <body>
-   <h1>DIFFERENTS TYPES OF POLLUTIONS</h1>
-   <ul>
+  <div class="container">
+    <h1>BMI Calculator</h1>
+    <div class="input-group">
+      <label for="weight">Weight (kg)</label>
+      <input type="number" id="weight" placeholder="Enter your weight in kg">
+    </div>
+    <div class="input-group">
+      <label for="height">Height (m)</label>
+      <input type="number" step="0.01" id="height" placeholder="Enter your height in meters">
+    </div>
+    <button onclick="calculateBMI()">Calculate BMI</button>
+    <div class="result" id="result"></div>
+  </div>
 
-         <li><a href="./index.html">Home</a></li> 
-         <li><a href="./air pollution.html">Air Pollution</a></li>
-         <li><a href="./water pollution.html">Water Pollution</a></li>
-         <li><a href="./soil pollution.html">Soil Pollution</a></li>
-         <li><a href="./noise pollution.html">Noise Pollution</a></li>
-   </ul>
-    <img src="https://i.ytimg.com/vi/TVMYY4Uun8M/maxresdefault.jpg" height="200px
-     " alt="">
-    <img src="https://eduauraapublic.s3.ap-south-1.amazonaws.com/webassets/images/blogs/types-of-pollution.jpg" height="200px" alt="">
-       <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQH9vb4Z5-82XeIfEJUNVMCjrkv_hboJbeM-A&s" alt="">
+  <script>
+    function calculateBMI() {
+      const weight = parseFloat(document.getElementById('weight').value);
+      const height = parseFloat(document.getElementById('height').value);
+      const resultDiv = document.getElementById('result');
+
+      if (!weight || !height || weight <= 0 || height <= 0) {
+        resultDiv.innerHTML = "⚠️ Please enter valid values.";
+        return;
+      }
+
+      const bmi = (weight / (height * height)).toFixed(2);
+      let category = '';
+
+      if (bmi < 18.5) category = 'Underweight';
+      else if (bmi < 25) category = 'Normal weight';
+      else if (bmi < 30) category = 'Overweight';
+      else category = 'Obese';
+
+      resultDiv.innerHTML = `Your BMI is <strong>${bmi}</strong> (${category})`;
+    }
+  </script>
 </body>
 </html>
