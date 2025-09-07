@@ -1,110 +1,65 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>BMI Calculator</title>
-  <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: linear-gradient(135deg, #04eb92, #ff0cff);
-      height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-    .container {
-      background: #fff;
-      padding: 30px;
-      border-radius: 15px;
-      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
-      width: 100%;
-      max-width: 400px;
-      text-align: center;
-    }
-    h1 {
-      margin-bottom: 20px;
-      color: #333;
-    }
-    .input-group {
-      margin-bottom: 15px;
-      text-align: left;
-    }
-    label {
-      display: block;
-      font-weight: bold;
-      margin-bottom: 5px;
-      color: #444;
-    }
-    input {
-      width: 100%;
-      padding: 10px;
-      border: 1px solid #ccc;
-      border-radius: 8px;
-      font-size: 16px;
-    }
-    button {
-      margin-top: 15px;
-      width: 100%;
-      padding: 12px;
-      border: none;
-      border-radius: 8px;
-      background: #3b5de7;
-      color: white;
-      font-size: 16px;
-      font-weight: bold;
-      cursor: pointer;
-      transition: 0.3s;
-    }
-    button:hover {
-      background: #5563d6;
-    }
-    .result {
-      margin-top: 20px;
-      font-size: 18px;
-      font-weight: bold;
-      color: #333;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PALINDROMS WORDS ASSIGNMENT</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="container">
-    <h1>BMI Calculator</h1>
-    <div class="input-group">
-      <label for="weight">Weight (kg)</label>
-      <input type="number" id="weight" placeholder="Enter your weight in kg">
+
+     <div class="container">
+    <h1>Palindrome Checker & Generator</h1>
+    
+    <div class="tabs">
+      <div class="tab active" onclick="switchTab('checker')">Palindrome Checker</div>
+      <div class="tab" onclick="switchTab('generator')">Palindrome Generator</div>
     </div>
-    <div class="input-group">
-      <label for="height">Height (m)</label>
-      <input type="number" step="0.01" id="height" placeholder="Enter your height in meters">
+    
+    <div id="checker" class="tab-content active">
+      <div class="input-group">
+        <label for="word">Enter a word</label>
+        <input type="text" id="word" placeholder="Enter a word to check">
+      </div>
+      <button onclick="checkPalindrome()">Check if Palindrome</button>
+      <div class="result" id="checkResult"></div>
+      
+      <div class="examples">
+        <h3>Palindrome Examples</h3>
+        <div class="palindrome-list">
+          • radar<br>
+          • level<br>
+          • civic<br>
+          • kayak<br>
+          • madam<br>
+          • racecar<br>
+          • refer<br>
+          • rotator<br>
+          • deed<br>
+          • noon
+        </div>
+      </div>
     </div>
-    <button onclick="calculateBMI()">Calculate BMI</button>
-    <div class="result" id="result"></div>
+    
+    <div id="generator" class="tab-content">
+      <div class="input-group">
+        <label for="length">Word Length</label>
+        <input type="number" id="length" min="3" max="15" value="5" placeholder="Enter desired length">
+      </div>
+      <button onclick="generatePalindrome()">Generate Palindrome</button>
+      <div class="result" id="generateResult"></div>
+      
+      <div class="examples">
+        <h3>How It Works</h3>
+        <p>This generator creates palindromic words by combining random letters and mirroring them. The middle letter is random for odd-length words.</p>
+      </div>
+    </div>
   </div>
-
-  <script>
-    function calculateBMI() {
-      const weight = parseFloat(document.getElementById('weight').value);
-      const height = parseFloat(document.getElementById('height').value);
-      const resultDiv = document.getElementById('result');
-
-      if (!weight || !height || weight <= 0 || height <= 0) {
-        resultDiv.innerHTML = "⚠️ Please enter valid values.";
-        return;
-      }
-
-      const bmi = (weight / (height * height)).toFixed(2);
-      let category = '';
-
-      if (bmi < 18.5) category = 'Underweight';
-      else if (bmi < 25) category = 'Normal weight';
-      else if (bmi < 30) category = 'Overweight';
-      else category = 'Obese';
-
-      resultDiv.innerHTML = `Your BMI is <strong>${bmi}</strong> (${category})`;
-    }
-  </script>
+  
+    <script src="app.js"></script>
 </body>
 </html>
+
+
+
+
